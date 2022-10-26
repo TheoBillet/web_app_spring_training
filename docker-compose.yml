@@ -2,5 +2,18 @@ version: "3.9"
 services:
     todolist:
         build : . # Utilise le fichier Dockerfile dans le même répertoire
+        labels:
+            - "traefik.http.routers.todolist.rule=PathPrefix(`/app`)"
+            - "traefik.http.middlewares.todolist.stripPrefix.prefixes=/app"
+            - "traefik.http.routers.todolist.middlewares=todolist@docker"
+        deploy:
+            replicas: 3
+    traefik:
+        image: traefik:2.5
+        restart: unless-stopped
         ports:
-            - 8081:8080 # Redirige le port 8081 de la machine hôte (gauche) vers le port 8080 du container (droite)
+            - 80:80
+            - 8080:8080
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+            - ./traefik.toml:/traefik.toml
