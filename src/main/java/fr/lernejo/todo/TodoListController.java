@@ -12,12 +12,12 @@ public class TodoListController {
     }
 
     @PostMapping
-    public void add(@RequestBody TodoEntity todoEntity) {
-        todoRepository.save(todoEntity);
+    public void addTodo(@RequestBody TodoEntity todoEntity) {
+        this.todoRepository.save(todoEntity);
     }
 
     @GetMapping
     public Iterable<TodoEntity> getTodos() {
-        return todoRepository.findAll();
+        return this.todoRepository.findAll();
     }
 }
