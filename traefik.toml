@@ -1,24 +1,24 @@
 [global]
-    sendAnonymousUsage = false
+sendAnonymousUsage = false
 
 [accessLog]
 
 [log]
-    level = "DEBUG"
-    format = "common"
+level = "DEBUG"
+format = "common"
 
 [providers]
-    [providers.docker]
-        endpoint = "unix:///var/run/docker.sock"
-        watch = true
-        exposedByDefault = true
-        swarmMode = false
+[providers.docker]
+endpoint = "unix:///var/run/docker.sock"
+watch = true
+exposedByDefault = true
+swarmMode = false
 
 [api]
-    dashboard = true
-    debug = false
-    insecure = true
+dashboard = true
+debug = false
+insecure = true
 
 [entryPoints]
-    [entryPoints.insecure]
-        address = ":80"
+[entryPoints.insecure]
+address = ":80"
